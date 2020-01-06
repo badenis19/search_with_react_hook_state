@@ -7,17 +7,17 @@ export const RepoProvider = (props) => {
     // inside the useState bracket always define the data type (e.g. array)
     const [repos, setRepos] = useState([]);
     
-    
+    // API call
     const FetchRepo = async (username) => {
         let res = await fetch(`https://api.github.com/users/${username}/repos`)
         let data = await res.json();
         return data;
     }
     
+    // storing data from API in state to then iterate over it
     const updateRepos = (username) => {
-        console.log("TEST")
+        // console.log("TEST")
         const myPromise = FetchRepo(username);
-        // setRepos(FetchRepo()); // trying to store in info return to then iterate over it
             myPromise.then( data => {
                 setRepos(data)
             })
